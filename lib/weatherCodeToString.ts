@@ -30,7 +30,7 @@ const weatherCodeToString: {
         label: "Depositing rime fog",
     },
     51: {
-        icon: "s07d",
+        icon: "d01d",
         label: "Light drizzle",
     },
     53: {

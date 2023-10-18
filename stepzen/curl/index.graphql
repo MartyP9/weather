@@ -39,6 +39,7 @@ type DailyUnits {
   uv_index_clear_sky_max: String
   uv_index_max: String
   weathercode: String
+  precipitation_sum: String
 }
 
 type Hourly {

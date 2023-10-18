@@ -39,6 +39,7 @@ interface CurrentWeather {
     uv_index_clear_sky_max: string;
     uv_index_max: string;
     weathercode: string;
+    precipitation_sum: string;
   }
   interface Hourly {
     apparent_temperature: [number]

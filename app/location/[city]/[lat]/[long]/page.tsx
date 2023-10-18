@@ -8,6 +8,7 @@ import TempChart from "@/components/TempChart";
 import fetchWeatherQuery from "@/graphql/queries/fetchWeatherQueries";
 import { cleanData } from "@/lib/cleanData";
 import getBasePath from "@/lib/getbasePath";
+import getWindDirection from "@/lib/windConverter";
 
 //refreshes cache every 2hr
 export const revalidate = 7200;
@@ -33,6 +34,8 @@ const WeatherPage = async ({params: { city, lat, long}}: Props) => {
     }
   });
   const results: Root = data.myQuery;
+
+  let wind = getWindDirection(results.current_weather.winddirection)
 
   // const dataToSend = cleanData(results, city)
   // const res = await  fetch(`${getBasePath()}/api/getWeatherSummary`, {
@@ -82,7 +85,7 @@ const WeatherPage = async ({params: { city, lat, long}}: Props) => {
                 color='rose' />
                 <StatCard 
                 title="Precipitation" 
-                metric={`${results.daily.uv_index_max[0].toFixed(1)} mm`}
+                metric={`${results.daily.precipitation_sum[0].toFixed(1)} mm`}
                 color='blue' />
             </div>
             <div className="flex space-x-3">
@@ -92,7 +95,7 @@ const WeatherPage = async ({params: { city, lat, long}}: Props) => {
                 color='cyan' />
               <StatCard 
                 title="Wind Direction" 
-                metric={`${results.current_weather.winddirection.toFixed(1)}°`}
+                metric={wind}
                 color='violet' />
             </div>
           </div>
