@@ -19,7 +19,8 @@
     "openai": "^4.12.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-select": "^5.7.7"
+    "react-select": "^5.7.7",
+    "react-windowed-select": "^5.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

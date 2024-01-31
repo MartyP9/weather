@@ -2,8 +2,9 @@
 import { Country, City }  from 'country-state-city';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Select from 'react-select'
+import Select, { createFilter } from 'react-select'
 import { GlobeIcon } from '@heroicons/react/solid'
+import WindowedSelect from 'react-windowed-select';
 
 type option ={
     value: {
@@ -81,18 +82,20 @@ const CityPicker = () => {
                 <GlobeIcon className='h-5 w-5 text-white ' />
                 <label htmlFor="country">City</label>
             </div>
-            <Select 
-                className='text-black'
-                value={selectedCity}
-                onChange={handleSelectedCity}
-                options={cities} 
-                getOptionLabel={(option) => {
-                    if(option.value) {
-                      return `${option.label}, ${option.value.stateCode}`
-                    }
-                      return option.label;
+                <WindowedSelect 
+                    options={cities} 
+                    windowThreshold={0}
+                    className='text-black'
+                    value={selectedCity}
+                    onChange={handleSelectedCity}
+                    filterOption={createFilter({ ignoreAccents: false })}
+                    getOptionLabel={(option:any) => {
+                        if(option.value) {
+                        return `${option.label}, ${option.value.stateCode}`
+                        }
+                        return option.label;
                   }}
-                />
+                 />
         </div>}
     </div>
   )
