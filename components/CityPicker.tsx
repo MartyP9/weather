@@ -2,7 +2,7 @@
 import { Country, City }  from 'country-state-city';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Select, { createFilter } from 'react-select'
+import Select, { ActionMeta, createFilter } from 'react-select'
 import { GlobeIcon } from '@heroicons/react/solid'
 import WindowedSelect from 'react-windowed-select';
 
@@ -44,11 +44,14 @@ const CityPicker = () => {
        setSelectedCountry(option);
        setSelectedCity(null);
     }
-    const handleSelectedCity = (option: cityOption) =>{
-        const { name, stateCode } = option?.value! 
-        setSelectedCity(option);
-        router.push(`/location/${name}/${option?.value.latitude}/${option?.value.longitude}`)
+    const handleSelectedCity = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
+        const selectedCity = newValue as cityOption; // Type assertion for safety
+      
+        const { name, stateCode } = selectedCity?.value!;
+        setSelectedCity(selectedCity);
+        router.push(`/location/${name}/${selectedCity?.value.latitude}/${selectedCity?.value.longitude}`);
     }
+
     const cities = selectedCountry?.value.isoCode
     ? City.getCitiesOfCountry(selectedCountry?.value.isoCode)?.map(
         cityPicked => ({

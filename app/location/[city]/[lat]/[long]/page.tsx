@@ -70,11 +70,11 @@ const WeatherPage = async ({params: { city, lat, long}}: Props) => {
           </div>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
             <StatCard 
-              title="Maximum Temperature" 
+              title="Today's High Temperature" 
               metric={`${results.daily.temperature_2m_max[0].toFixed(1)}°C`}
               color='yellow' />
             <StatCard 
-              title="Minimum Temperature" 
+              title="Today's Low Temperature" 
               metric={`${results.daily.temperature_2m_min[0].toFixed(1)}°C`}
               color='green' />
             <div className="flex space-x-3">
