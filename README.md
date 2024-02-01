@@ -11,7 +11,7 @@ Weather App made using
 OpenAI execution code commented out to avoid charges
 
 ## Live Demo
-find at www.weather-ten-khaki.vercel.app
+find at https://weather-ten-khaki.vercel.app
 
 ### Installation & Running Locally
 npx create-next-app@latest
